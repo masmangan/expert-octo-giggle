@@ -1,21 +1,37 @@
+import java.util.Arrays;
+
 class Queue {
     int[] data;
-    int inicio;
-    int fim;
+    int head;
+    int tail;
 
     Queue(int capacity) {
-        data = new int[capacity + 1];
-        inicio = 0; // TODO
-        fim = 0; // TODO
+        if (capacity <= 0)
+            throw new IllegalArgumentException("A capacidade deve ser maior ou igual a 1.");
+        data = new int[capacity];
+        head = 0; 
+        tail = 0; 
     }
 
     void enqueue(int value) {
-        // TODO
+        // TODO:
+        if (isFull())
+            throw new IllegalStateException("Queue is full!");
+
+        data[tail] = value;
+        tail++;
+        if (tail >= data.length)
+            tail = 0;
     }
 
     int dequeue() {
-        // TODO        
-        return 0;
+        if (isEmpty())
+            throw new IllegalStateException("Queue is empty!");
+        int value = data[head];
+        head++;
+        if (head >= data.length)
+            head = 0;        
+        return value;
     }
 
     boolean isFull() {
@@ -24,7 +40,11 @@ class Queue {
     }
 
     boolean isEmpty() {
-        // TODO        
-        return false;
+        return head == tail;
     }
+
+    @Override
+    public String toString() {        
+        return String.format("head=%d tail=%d data=%s", head, tail, Arrays.toString(data));
+    }    
 }
