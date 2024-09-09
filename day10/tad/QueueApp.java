@@ -15,11 +15,13 @@ public class QueueApp {
         q.enqueue(106);
         System.out.println(q);
 
-        while (! q.isEmpty() ) {
-            int value = q.dequeue();
-            System.out.println(value);
-            System.out.println(q);
-        }
-        System.out.println(q);
+        // TODO: queue is full!
+
+        //while (! q.isEmpty() ) {
+        //    int value = q.dequeue();
+        //    System.out.println(value);
+        //    System.out.println(q);
+        //}
+        //System.out.println(q);
     }
 }
