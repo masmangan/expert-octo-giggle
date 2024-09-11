@@ -1,6 +1,14 @@
 import java.util.Arrays;
 
-public class Stack {
+
+interface Stackable {
+    int pop();
+    void push(int value);
+    boolean isEmpty();
+    boolean isFull();
+}
+
+public class Stack implements Stackable {
     private int[] data;
     private int top;
 
@@ -12,7 +20,7 @@ public class Stack {
         top = 0;
     }
 
-    int pop() {
+    public int pop() {
         if (isEmpty())
             throw new IllegalStateException("Stack Underflow!");
         int value = data[top];
@@ -20,18 +28,18 @@ public class Stack {
         return value;
     }
 
-    void push(int value) {
+    public void push(int value) {
         if (isFull())
             throw new IllegalStateException("Stack Overflow!");
         top++;
         data[top] = value;
     }
 
-    boolean isEmpty() {
+    public boolean isEmpty() {
         return top == 0;
     }
 
-    boolean isFull() {
+    public boolean isFull() {
         return top == data.length - 1;
     }    
 

@@ -14,7 +14,6 @@ class Queue {
     }
 
     void enqueue(int value) {
-        // TODO:
         if (isFull())
             throw new IllegalStateException("Queue is full!");
 
@@ -35,8 +34,10 @@ class Queue {
     }
 
     boolean isFull() {
-        // TODO        
-        return false;
+        if (head < tail)     
+            return head == 0 && tail >= data.length -1;
+        else
+            return tail == head - 1;
     }
 
     boolean isEmpty() {
