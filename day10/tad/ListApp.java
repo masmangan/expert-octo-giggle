@@ -2,7 +2,9 @@ public class ListApp {
 
     public static void main(String[] args) {
         System.out.println("Lists!");
-        List lst = new List(5);
+        //Listable lst = new ListArray(5);
+        Listable lst = new ListLinked();
+
         System.out.println(lst);
 
         if (!lst.isEmpty())
@@ -14,6 +16,8 @@ public class ListApp {
         lst.addValue(42);
         int v1 = lst.getValueAt(0);
         if (v1 != 42)
-            System.out.println("ERRO: get encontrou valor inesperado");
-    }
+            System.out.println("ERRO: get encontrou valor inesperado");         
+        
+        System.out.println(lst);
+        }
 }
