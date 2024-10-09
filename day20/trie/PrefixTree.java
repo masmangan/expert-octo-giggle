@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * 
+ */
 class Node {
     char value;
     Map<Character, Node> next;
@@ -14,6 +17,9 @@ class Node {
     }
 }
 
+/**
+ * 
+ */
 public class PrefixTree {
 
     private Node root;
@@ -43,6 +49,54 @@ public class PrefixTree {
             add0(s.substring(1), node);
     }
 
+    public boolean contains(String s) {
+        if (s == null)
+            return false;
+        if (s.isEmpty())
+            return false;
+        Node n = root;
+        while (n != null) {
+            char c = s.charAt(0);
+            Node next = n.next.get(c);
+            if (next == null)
+                return false;
+            if (s.length() == 1) 
+                if (next.isWord)
+                    return true;
+                else    
+                    return false;            
+            s = s.substring(1);
+            n = next;
+        }
+        return false;
+    }
+
+
+    public boolean containsRecursive(String s) {
+        if (s == null)
+            return false;
+        if (s.isEmpty())
+            return false;
+        return containsRecursive0(s,root);
+    }
+
+    public boolean containsRecursive0(String s, Node n) {
+        if (n != null) {
+            char c = s.charAt(0);
+            Node next = n.next.get(c);
+            if (next == null)
+                return false;
+            if (s.length() == 1) 
+                if (next.isWord)
+                    return true;
+                else    
+                    return false;            
+            return containsRecursive0(s.substring(1), next);
+        }
+        return false;
+    }
+
+
     @Override
     public String toString() {
         List<String> words = new ArrayList<>();
@@ -68,6 +122,11 @@ public class PrefixTree {
         System.out.println(tree1);
         tree1.add("bolo");
         System.out.println(tree1);
+        System.out.println(tree1.contains("bo"));
+        System.out.println(tree1.contains("bola"));
+        System.out.println(tree1.contains("bolo"));
+        System.out.println(tree1.contains("bolacha"));
+        System.out.println(tree1.contains("teste"));
     }
 
 }
