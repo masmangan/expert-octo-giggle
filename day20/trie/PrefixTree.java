@@ -51,7 +51,13 @@ public class PrefixTree {
     }
 
     private void toString0(Node n, List<String> words, String prefix) {
-
+        for (char c : n.next.keySet()) {
+            Node next = n.next.get(c);
+            String newPrefix = prefix + c;
+            if (next.isWord)
+                words.add(newPrefix);
+            toString0(next, words, newPrefix);
+        }
     }
 
     public static void main(String[] args) {
@@ -59,6 +65,8 @@ public class PrefixTree {
         PrefixTree tree1 = new PrefixTree();
         System.out.println(tree1);
         tree1.add("bola");
+        System.out.println(tree1);
+        tree1.add("bolo");
         System.out.println(tree1);
     }
 
